@@ -48,14 +48,11 @@ namespace BossFightInheritance
                 defender.TakeDamage(attacker.Strength);
                 PrintActions(attacker, defender);
 
-                
-                
                 IsDead(defender,attacker);
 
-                
                 attacker.UseStamina(10);
                 NextFighter();
-                Console.WriteLine($"Stamina remaining: {attacker.Stamina}\n");
+                Console.WriteLine($"Stamina remaining: {attacker.Stamina}");
                 Thread.Sleep(1000);
             }
         }
@@ -77,7 +74,7 @@ namespace BossFightInheritance
             {
                 Console.WriteLine();
                 attacker.PrintName();
-                Console.Write(" has no stamina left and has to skip the turn to Recharge.\n\n");
+                Console.Write(" has no stamina left and has to skip the turn to Recharge.\n");
                 attacker.Recharge();
                 SkipTurn();
             }
@@ -88,12 +85,9 @@ namespace BossFightInheritance
             IsFighting = true;
         }
 
-        public void HitOpponent()
-        {
-        }
-
         private void PrintActions(Character attacker, Character defender)
         {
+            Console.WriteLine();
             attacker.PrintName();
             Console.Write($" dealt {attacker.Strength}dmg to ");
             defender.PrintName();
