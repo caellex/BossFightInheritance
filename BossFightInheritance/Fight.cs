@@ -28,12 +28,12 @@ namespace BossFightInheritance
             int randStr = rnd.Next(0, 30);
             return randStr;
         }
-        private void WhoIsFighting()
+        private void NextFighter()
         {
             _currentFighterID = (_currentFighterID + 1) % 2;
         }
 
-        private int GetCounterPartFightID()
+        private int GetDefenderId()
         {
             return (_currentFighterID + 1) % 2;
         }
@@ -43,7 +43,7 @@ namespace BossFightInheritance
             while (IsFighting)
             {
                 Character attacker = characters[_currentFighterID];
-                Character defender = characters[GetCounterPartFightID()];
+                Character defender = characters[GetDefenderId()];
                 CheckStamina(attacker);
                 defender.TakeDamage(attacker.Strength);
                 PrintActions(attacker, defender);
@@ -54,7 +54,7 @@ namespace BossFightInheritance
 
                 
                 attacker.UseStamina(10);
-                WhoIsFighting();
+                NextFighter();
                 Console.WriteLine($"Stamina remaining: {attacker.Stamina}\n");
                 Thread.Sleep(1000);
             }
@@ -110,7 +110,7 @@ namespace BossFightInheritance
 
         private void SkipTurn()
         {
-            WhoIsFighting();
+            NextFighter();
             FightYourTurn();
         }
     }
